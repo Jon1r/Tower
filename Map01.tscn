@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Basic_Gun.tscn" type="PackedScene" id=1]
+[ext_resource path="res://BasicBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Map01.gd" type="Script" id=3]
+[ext_resource path="res://BasicTower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://EnemyTower01.tscn" type="PackedScene" id=7]
+
+[node name="Map01" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.694118, 0.470588, 0.470588, 1 )
+self_modulate = Color( 0.741176, 0.847059, 0.698039, 0.160784 )
+position = Vector2( 1070.64, 297.204 )
+scale = Vector2( 33.5932, 9.35102 )
+texture = ExtResource( 6 )
+
+[node name="BasicTower" parent="." instance=ExtResource( 4 )]
+position = Vector2( 41.6223, 405.52 )
+collision_layer = 2
+
+[node name="Basic_Gun" parent="." instance=ExtResource( 1 )]
+position = Vector2( 43.1361, 275.328 )
+Bullet = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512.78, 303.006 )
+rotating = true
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 2200
+limit_bottom = 500
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 20.0
+drag_margin_left = 0.9
+drag_margin_top = 0.9
+drag_margin_right = 0.9
+drag_margin_bottom = 0.9
+
+[node name="HUD" parent="Camera2D" instance=ExtResource( 5 )]
+
+[node name="EnemyTower01" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2090, 400 )
+[connection signal="shoot" from="Basic_Gun" to="." method="_on_Basic_Gun_shoot"]
+[connection signal="buy" from="Camera2D/HUD" to="." method="_on_HUD_buy"]
+[connection signal="enemy" from="EnemyTower01" to="." method="_on_EnemyTower01_enemy"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://HUD.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://LightWarrior.tscn" type="PackedScene" id=3]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+light_warrior = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 1.18921
+margin_top = 478.061
+margin_right = 1026.19
+margin_bottom = 602.061
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 11.8921
+margin_top = 488.764
+margin_right = 159.892
+margin_bottom = 592.764
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Button"]
+position = Vector2( 73.1363, 51.7306 )
+scale = Vector2( 1.83616, 1.31588 )
+texture = ExtResource( 2 )
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
