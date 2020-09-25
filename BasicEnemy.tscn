@@ -8,18 +8,26 @@
 extents = Vector2( 31.596, 31.3181 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 66.2051
+radius = 37.8993
 
 [node name="BasicEnemy" instance=ExtResource( 2 )]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 1 )
 speed = 1000
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 0.533333, 0.0666667, 0.0666667, 1 )
+
+[node name="Sprite" type="Sprite" parent="Sprite" index="0"]
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
+
+[node name="DetectRadius" parent="." index="3"]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" parent="DetectRadius" index="0"]
 shape = SubResource( 2 )
