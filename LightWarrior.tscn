@@ -1,13 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Warrior.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LightWarrior.gd" type="Script" id=3]
-[ext_resource path="res://Peasant.tscn" type="PackedScene" id=4]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 34.888
 
 [node name="LightWarrior" instance=ExtResource( 1 )]
+scale = Vector2( 0.2, 0.2 )
 collision_layer = 2
 collision_mask = 12
 script = ExtResource( 3 )
@@ -15,17 +12,12 @@ time_speed = 1.0
 dmg = 1
 speed = 1200
 
-[node name="Sprite" parent="." index="0"]
-scale = Vector2( 0.2, 0.2 )
+[node name="myShape" parent="." index="0"]
+position = Vector2( 0, 60 )
 
-[node name="Peasant" parent="Sprite" index="0" instance=ExtResource( 4 )]
-position = Vector2( 3.63834, -27.6536 )
-collision_mask = 12
-
-[node name="DetectRadius" parent="." index="3"]
+[node name="DetectRadius" parent="." index="2"]
 collision_layer = 2
 collision_mask = 2147483660
 
 [node name="CollisionShape2D" parent="DetectRadius" index="0"]
-position = Vector2( 0.887356, 12.804 )
-shape = SubResource( 1 )
+position = Vector2( 0, 60 )
