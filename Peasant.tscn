@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/Warriors/Peasant.svg" type="Texture" id=1]
+[ext_resource path="res://Peasant.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 53.2487
-height = 160.981
+height = 131.791
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pike:position")
 tracks/0/interp = 1
@@ -291,10 +293,10 @@ tracks/23/loop_wrap = true
 tracks/23/imported = false
 tracks/23/enabled = true
 tracks/23/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
 tracks/24/type = "value"
 tracks/24/path = NodePath("AreaPike/AttackPike:disabled")
@@ -436,28 +438,32 @@ tracks/9/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 110.66, 29.7048 )
 
-[node name="Peasant" type="Area2D"]
+[sub_resource type="CircleShape2D" id=5]
+radius = 190.004
+
+[node name="Peasant" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 12
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -11.6541, 55.0921 )
+position = Vector2( 0, 60 )
 shape = SubResource( 1 )
 
 [node name="Body" type="Sprite" parent="."]
-position = Vector2( -4.77205, 113.705 )
+position = Vector2( -8.22452, 108.663 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 13, 95, 100, 141 )
 
 [node name="Head" type="Sprite" parent="."]
-position = Vector2( 4.27366, 6.93017 )
+position = Vector2( 6.88992, 4.31391 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 127, 6, 120, 105 )
 
 [node name="Hat" type="Sprite" parent="."]
-position = Vector2( -26.4522, -53.1814 )
+position = Vector2( -24.9836, -60.1109 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 6, 10, 110, 56 )
@@ -465,7 +471,8 @@ region_rect = Rect2( 6, 10, 110, 56 )
 [node name="Leg" type="Sprite" parent="."]
 
 [node name="left" type="Sprite" parent="Leg"]
-position = Vector2( 18.387, 167.781 )
+position = Vector2( -6.97497, 163.776 )
+rotation = -0.633764
 scale = Vector2( 1, 0.85736 )
 z_index = -1
 texture = ExtResource( 1 )
@@ -474,25 +481,26 @@ region_enabled = true
 region_rect = Rect2( 335, 8, 28, 86 )
 
 [node name="right" type="Sprite" parent="Leg"]
-position = Vector2( -28.0216, 171.995 )
-scale = Vector2( 1, 0.802016 )
+position = Vector2( -6.66412, 165.656 )
+rotation = 0.497279
+scale = Vector2( 1, 0.716649 )
 texture = ExtResource( 1 )
 offset = Vector2( 7.81886, 39.1084 )
 region_enabled = true
 region_rect = Rect2( 279, 7, 28, 86 )
 
 [node name="Pike" type="Sprite" parent="."]
-position = Vector2( 50.2266, 136.323 )
+position = Vector2( 66, 136 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 145, 192, 226, 56 )
 
 [node name="Arm" type="Sprite" parent="."]
-position = Vector2( 3.92439, -3.92439 )
+position = Vector2( 6.54065, -6.54065 )
 
 [node name="left" type="Sprite" parent="Arm"]
-position = Vector2( 18.7003, 77.0199 )
-rotation = 0.13319
+position = Vector2( 21.411, 78.1913 )
+rotation = 0.038807
 scale = Vector2( 1.48258, 1.10628 )
 z_index = -1
 texture = ExtResource( 1 )
@@ -501,8 +509,8 @@ region_enabled = true
 region_rect = Rect2( 265, 99, 61, 69 )
 
 [node name="right" type="Sprite" parent="Arm"]
-position = Vector2( -34.6985, 77.6803 )
-rotation = 0.282174
+position = Vector2( -32.6352, 76.7755 )
+rotation = 0.118468
 scale = Vector2( 1.08703, 0.919535 )
 texture = ExtResource( 1 )
 offset = Vector2( 26.6352, 31.2245 )
@@ -521,4 +529,9 @@ collision_mask = 12
 [node name="AttackPike" type="CollisionShape2D" parent="AreaPike"]
 position = Vector2( 66.9037, 135.405 )
 shape = SubResource( 4 )
-disabled = true
+
+[node name="DetectRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+position = Vector2( 0, 60 )
+shape = SubResource( 5 )
