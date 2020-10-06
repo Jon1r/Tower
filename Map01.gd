@@ -19,7 +19,6 @@ func _process(delta):
 
 
 func _on_EnemyTower01_enemy(basic):
-	var e = basic.instance()
-	add_child(e)
-	e.position = $EnemyTower01/Position2D.global_position
+	add_child(basic)
+	basic.position = $EnemyTower01/Position2D.global_position
 	

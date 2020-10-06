@@ -1,36 +1,23 @@
-extends "res://Warrior.gd"
+extends KinematicBody2D
 
-var vel = Vector2(-1, 0)
-var attack = false
-var see_enemy = false
+var vel = Vector2(2, 0)
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+func get_collision():
+	return $myShape.get_shape()
 
+func get_detect_radius_shape():
+	return $DetectRadius/CollisionShape2D.get_shape()
+# Called when the node enters the scene tree for the first time.
 func _ready():
+	pass # Replace with function body.
+
+func get_collision_layer():
+	return $DetectRadius.collision_layer
+
+func get_collision_mask():
+	return $DetectRadius.collision_mask
+
+func play(action):
 	pass
-
-func _physics_process(delta):
-	
-	if see_enemy:
-		#$Peasant/AnimationPlayer.stop("walk")
-		if attack:
-			attack = false
-			#$Peasant/AnimationPlayer.play("attack")
-	else:
-		#$Peasant/AnimationPlayer.stop("attack")
-		#$Peasant/AnimationPlayer.play("walk")
-		move_and_slide(vel * speed * delta)
-	
-
-
-func _on_DetectRadius_body_entered(body):
-	see_enemy = true
-	print("hello")
-	attack = true
-	$Attack_speed.start()
-
-
-func _on_Attack_speed_timeout():
-	attack = true
-
-
-func _on_DetectRadius_body_exited(body):
-	see_enemy = false

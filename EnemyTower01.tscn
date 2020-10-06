@@ -1,16 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Tower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://EnemyTower01.gd" type="Script" id=3]
-[ext_resource path="res://BasicEnemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.7731, 60.1487 )
 
-[node name="EnemyTower01" instance=ExtResource( 2 )]
+[node name="EnemyTower" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
-Basic = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 0.737255, 0.0941176, 0.0941176, 1 )
@@ -26,5 +24,5 @@ shape = SubResource( 1 )
 position = Vector2( -63.6781, 5.99323 )
 
 [node name="TimerSpawn" type="Timer" parent="." index="3"]
-wait_time = 5.0
+wait_time = 10.0
 [connection signal="timeout" from="TimerSpawn" to="." method="_on_TimerSpawn_timeout"]

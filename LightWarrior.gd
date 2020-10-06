@@ -1,17 +1,20 @@
 extends "res://Warrior.gd"
 
-var vel = Vector2(1, 0)
+var vel 
 var attack = false
 var see_enemy = false
 var enemy = null
 #Конструктор
 func _init():
-	print("hello")
+	pass
 	
 func set_enemy(_enemy):
 	enemy = _enemy.instance()
 	$DetectRadius/CollisionShape2D.set_shape(enemy.get_detect_radius_shape())
 	$myShape.set_shape(enemy.get_collision())
+	vel = enemy.vel
+	$DetectRadius.set_collision_layer(enemy.get_collision_layer())
+	$DetectRadius.set_collision_mask(enemy.get_collision_mask())
 	add_child(enemy)
 
 func _ready():

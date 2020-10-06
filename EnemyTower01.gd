@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-export (PackedScene) var Basic
+var light_warrior = preload("res://LightWarrior.tscn")
+var basic = preload("res://BasicEnemy.tscn")
 
 signal enemy
 
@@ -15,4 +16,6 @@ func _process(delta):
 
 func _on_TimerSpawn_timeout():
 	spawn = true
-	emit_signal("enemy", Basic)
+	var warrior = light_warrior.instance()
+	warrior.set_enemy(basic)
+	emit_signal("enemy", warrior)
