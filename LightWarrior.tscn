@@ -5,8 +5,8 @@
 
 [node name="LightWarrior" instance=ExtResource( 1 )]
 scale = Vector2( 0.2, 0.2 )
-collision_layer = 2
-collision_mask = 12
+collision_layer = 2147483648
+collision_mask = 0
 script = ExtResource( 3 )
 time_speed = 1.0
 dmg = 1
@@ -16,8 +16,8 @@ speed = 1200
 position = Vector2( 0, 60 )
 
 [node name="DetectRadius" parent="." index="2"]
-collision_layer = 2
-collision_mask = 2147483660
+collision_layer = 0
+collision_mask = 2147483648
 
 [node name="CollisionShape2D" parent="DetectRadius" index="0"]
 position = Vector2( 0, 60 )

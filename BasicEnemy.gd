@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var vel = Vector2(2, 0)
+var vel = Vector2(-1, 0)
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -13,11 +13,11 @@ func get_detect_radius_shape():
 func _ready():
 	pass # Replace with function body.
 
-func get_collision_layer():
-	return $DetectRadius.collision_layer
+#func get_collision_layer():
+	return $DetectRadius.get_collision_layer_bit(2)
 
-func get_collision_mask():
-	return $DetectRadius.collision_mask
+#func get_collision_mask():
+	return $DetectRadius.get_collision_mask_bit(1)
 
 func play(action):
 	pass

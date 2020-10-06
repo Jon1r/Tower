@@ -531,6 +531,8 @@ position = Vector2( 66.9037, 135.405 )
 shape = SubResource( 4 )
 
 [node name="DetectRadius" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
 position = Vector2( 0, 60 )
