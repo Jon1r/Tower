@@ -25,3 +25,12 @@ func explode():
 
 func _on_Lifetime_timeout():
 	explode()
+
+
+func _on_Area2D_body_entered(body):
+	print(body.name)
+	explode()
+	if body.has_method('take_damage'):
+		body.take_damage(damage)
+
+

@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
+export (int) var max_health 
+
 var vel = Vector2(-1, 0)
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 func get_collision():
+	$myShape.hide()
 	return $myShape.get_shape()
 
 func get_detect_radius_shape():
@@ -21,3 +24,9 @@ func _ready():
 
 func play(action):
 	pass
+
+func take_damage(dmg):
+	max_health -= dmg
+	print(max_health)
+	if max_health < 0:
+		queue_free()

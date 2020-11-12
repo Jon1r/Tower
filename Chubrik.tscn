@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://LightWarrior.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Chubrik.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 29.728, 29.6639 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 35.2861
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 43.5939, 10 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.152941, 0.0784314, 0.882353, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 45.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AttackArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4, 0.5, 0.602953 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.996078, 0, 0, 1 ), Color( 0.235294, 0.027451, 0.027451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="Chubrik" instance=ExtResource( 1 )]
+scale = Vector2( 1, 1 )
+collision_layer = 2
+script = ExtResource( 3 )
+attack_speed = 0.1
+damage = 2
+walk_speed = 400
+cost = 200
+max_health = 200
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+modulate = Color( 0.996078, 0, 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="BodyShape" parent="." index="1"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="DetectRadius" parent="." index="3"]
+collision_layer = 2147483650
+
+[node name="CollisionShape2D" parent="DetectRadius" index="0"]
+position = Vector2( 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="AttackArea" index="0"]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="AnimationPlayer" parent="." index="5"]
+anims/attack = SubResource( 4 )
+anims/walk = SubResource( 5 )
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]

@@ -4,15 +4,20 @@
 
 [node name="Warrior" type="KinematicBody2D"]
 script = ExtResource( 1 )
-speed = 50
 
-[node name="myShape" type="CollisionShape2D" parent="."]
+[node name="BodyShape" type="CollisionShape2D" parent="."]
 
-[node name="Attack_speed" type="Timer" parent="."]
+[node name="AttackSpeed" type="Timer" parent="."]
 
 [node name="DetectRadius" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
-[connection signal="timeout" from="Attack_speed" to="." method="_on_Attack_speed_timeout"]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[connection signal="timeout" from="AttackSpeed" to="." method="_on_Attack_speed_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]

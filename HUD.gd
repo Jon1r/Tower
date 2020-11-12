@@ -1,15 +1,14 @@
 extends CanvasLayer
 
-var light_warrior = preload("res://LightWarrior.tscn")
-var preasant = preload("res://Peasant.tscn")
+
+var chubrik = preload("res://Chubrik.tscn")
 
 signal buy
 
 
 func _on_Button_pressed():
-	var warrior = light_warrior.instance()
-	warrior.set_enemy(preasant)
-	emit_signal("buy", warrior)
+	#var warrior = preasant.instance()
+	emit_signal("buy", chubrik)
 	
 
 

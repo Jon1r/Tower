@@ -1,11 +1,17 @@
-extends "res://Warrior.gd"
+extends KinematicBody2D
 
 var vel 
 var attack = false
 var see_enemy = false
+var enemy
+var walk_speed = 100
+var health
+var dmg
 
 #Конструктор
-	
+func _init(_action):
+	var action = _action
+	var walk_speed = 100
 
 func _ready():
 	if enemy:
@@ -19,7 +25,7 @@ func _physics_process(delta):
 		#$Sprite/Peasant/AnimationPlayer.stop("walk")
 		if attack:
 			attack = false
-			$AnimationPlayer.play("attack")
+			$AnimationPlayer.play("walk")
 	else:
 		#$Sprite/Peasant/AnimationPlayer.stop("attack")
 		$AnimationPlayer.play("walk")

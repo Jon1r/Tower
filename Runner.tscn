@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Warrior.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Runner.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33.1093, 35.88 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 40.4418
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 52.6938, 10 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.643137, 0.317647, 0.317647, 1 ) ]
+}
+
+[node name="Runner" instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 2147483651
+script = ExtResource( 2 )
+attack_speed = 100.0
+damage = 10
+walk_speed = 1000
+cost = 10
+max_health = 100
+enemy = true
+
+[node name="BodyShape" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="DetectRadius" parent="." index="2"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="DetectRadius" index="0"]
+shape = SubResource( 2 )
+
+[node name="AttackArea" parent="." index="3"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="AttackArea" index="0"]
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/attack = SubResource( 4 )
+anims/walk = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="." index="5"]
+texture = ExtResource( 3 )
