@@ -78,4 +78,5 @@ anims/attack = SubResource( 4 )
 anims/walk = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="." index="5"]
+modulate = Color( 0.203922, 0.368627, 0, 1 )
 texture = ExtResource( 3 )
